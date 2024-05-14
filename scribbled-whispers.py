@@ -1,10 +1,11 @@
 import os
-from os import system
 import whisper
 from whisper.utils import get_writer
+from tkinter.filedialog import askopenfilename, asksaveasfilename, askdirectory
 
 
-def clear(): system('cls')
+
+def clear(): os.system('cls')
 
 def printScribbledWhispers():
     print(r'''
@@ -67,11 +68,13 @@ def main():
     while finished == False:
         clear()
         printScribbledWhispers()
-        print('Choose an Episode to transcribe:')
-        episode = input()
-        audio = epsPath + "Episode-" +  episode + ".mp4"
+        print('Choose a file to transcribe:')
+        input('(Press ENTER to continue)')
+        audio = askopenfilename(initialdir="./", filetypes=(("supported files", "*.mp3 *.mp4 *.mpeg *.mpga *.m4a *.wav *.webm"), ("all files", "*.*")))
         result = model.transcribe(audio, verbose=True)
-        outputDir = "./"
+        print('Choose a directory destination to SAVE AS:')
+        input('(Press ENTER to continue)')
+        outputDir = askdirectory(title='Choose a FOLDER', initialdir='./')
         # srt_writer = get_writer("srt", outputDir)
         # srt_writer(result, audio)
         txt_writer = get_writer("txt", outputDir)
