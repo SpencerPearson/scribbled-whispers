@@ -1,7 +1,7 @@
 import os
 import whisper
 from whisper.utils import get_writer
-from tkinter.filedialog import askopenfilename, asksaveasfilename, askdirectory
+from tkinter.filedialog import askopenfilename, askdirectory
 
 
 
@@ -61,7 +61,6 @@ def printWolf():
 
 
 model = whisper.load_model("small.en")
-epsPath = "../../../episodes/"
 
 def main():
     finished = False
